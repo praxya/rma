@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_rma_supplier_form" model="ir.ui.view">
+            <field name="name">rma.order.supplier.form</field>
+            <field name="model">rma.order</field>
+            <field name="inherit_id" ref="rma.view_rma_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="add_invoice_id" position="after">
+                    <field name="add_purchase_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_purchase_line_rma_tree">
+            <field name="name">Purchases</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+        </record>
+
+        <record id="view_rma_form_button" model="ir.ui.view">
+            <field name="name">rma.order.form</field>
+            <field name="model">rma.order</field>
+            <field name="inherit_id" ref="rma.view_rma_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[@class='oe_button_box']" position="inside">
+                    <button type="object"  name="action_view_po_lines"
+                            class="oe_stat_button"
+                            icon="fa-briefcase">
+                        <field name="po_line_count" widget="statinfo"
+                               string="Purchases"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
