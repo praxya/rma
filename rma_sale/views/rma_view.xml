@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_rma_form" model="ir.ui.view">
+            <field name="name">rma.order.form</field>
+            <field name="model">rma.order</field>
+            <field name="inherit_id" ref="rma.view_rma_form"/>
+            <field name="arch" type="xml">
+                <field name="add_invoice_id" position="after">
+                    <field name="add_sale_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_line_rma_tree">
+            <field name="name">Sales</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_id" ref="sale.view_order_line_tree"/>
+        </record>
+
+        <record id="view_rma_form_button" model="ir.ui.view">
+            <field name="name">rma.order.form</field>
+            <field name="model">rma.order</field>
+            <field name="inherit_id" ref="rma.view_rma_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[@class='oe_button_box']" position="inside">
+                    <button type="object"  name="action_view_so_lines"
+                            class="oe_stat_button"
+                            icon="fa-money">
+                        <field name="so_line_count" widget="statinfo"
+                               string="Sales"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
