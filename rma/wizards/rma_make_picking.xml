@@ -78,7 +78,7 @@
         <field name="target">new</field>
         <field name="view_id" ref="view_rma_picking"/>
         <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="context">{'picking_type': 'in'}</field>
+        <field name="context">{'picking_type': 'incoming'}</field>
     </record>
 
     <record id="action_rma_picking_out" model="ir.actions.act_window">
@@ -91,7 +91,7 @@
         <field name="target">new</field>
         <field name="view_id" ref="view_rma_picking_out"/>
         <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="context">{'picking_type': 'out'}</field>
+        <field name="context">{'picking_type': 'outgoing'}</field>
     </record>
 
     <record model="ir.values" id="values_action_rma_picking_in">

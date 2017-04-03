@@ -9,3 +9,4 @@ from . import stock_move
 from . import stock_warehouse
 from . import invoice
 from . import product
+from . import procurement

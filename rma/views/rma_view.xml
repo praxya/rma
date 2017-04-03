@@ -32,6 +32,7 @@
                     <field name="product_id"/>
                     <field name="name"/>
                     <field name="operation_id"/>
+                    <field name="route_id"/>
                     <field name="uom_id" groups="product.group_uom"/>
                     <field name="product_qty"/>
                     <field name="qty_to_receive"/>
@@ -81,6 +82,7 @@
                             <field name="product_id"/>
                             <field name="price_unit"/>
                             <field name="operation_id"/>
+                            <field name="route_id"/>
                             <field name="invoice_line_id" invisible="True"/>
                             <field name="uom_id" groups="product.group_uom" readonly="1"/>
                             <field name="product_qty"/>
@@ -231,6 +233,10 @@
                                    groups='rma.group_rma_delivery_invoice_address'/>
                             <field name="warehouse_id"/>
                             <field name="date_rma"/>
+                            <field name="is_dropship"/>
+                            <field name="type" invisible="1"/>
+                            <field name="rma_id"
+                                   attrs="{'invisible': [('type', '!=', 'dropship')]}"/>
                         </group>
                     </group>
                     <notebook colspan="4">
@@ -246,6 +252,7 @@
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="operation_id"/>
+                                    <field name="route_id"/>
                                     <field name="product_qty"/>
                                     <field name="uom_id" groups="product.group_uom"/>
                                     <field name="qty_to_receive"/>
@@ -368,6 +375,10 @@
                                    groups='rma.group_rma_delivery_invoice_address'/>
                             <field name="warehouse_id"/>
                             <field name="date_rma"/>
+                            <field name="type" invisible="1"/>
+                            <field name="is_dropship" readonly="1"/>
+                            <field name="rma_id"
+                                   attrs="{'invisible': [('type', '!=', 'dropship')]}"/>
                         </group>
                     </group>
                     <notebook colspan="4">
@@ -383,6 +394,7 @@
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="operation_id"/>
+                                    <field name="route_id"/>
                                     <field name="product_qty"/>
                                     <field name="uom_id" groups="product.group_uom"/>
                                     <field name="qty_to_receive"/>
@@ -471,9 +483,11 @@
             <field name="model">rma.operation</field>
             <field name="arch" type="xml">
                 <form string="RMA Operations">
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="type"/>
+                    <group colspan="4" col="2">
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="type"/>
+                    </group>
                 </form>
             </field>
         </record>

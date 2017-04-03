@@ -7,6 +7,7 @@
 
 import time
 from openerp import models, fields, exceptions, api, _
+from openerp.exceptions import ValidationError
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT as DT_FORMAT
 import openerp.addons.decimal_precision as dp
 
@@ -17,7 +18,7 @@ class RmaMakePicking(models.TransientModel):
 
     @api.model
     def _default_dest_location_id(self):
-        if self.env.context.get('picking_type') == 'in':
+        if self.env.context.get('picking_type') == 'incoming':
             if self.warehouse_id:
                 return self.warehouse_id.lot_rma_id.id
             if 'active_ids' in self.env.context:
@@ -36,7 +37,7 @@ class RmaMakePicking(models.TransientModel):
 
     @api.model
     def _default_src_location_id(self):
-        if self.env.context.get('picking_type') == 'out':
+        if self.env.context.get('picking_type') == 'outgoing':
             if self.warehouse_id:
                 return self.warehouse_id.lot_rma_id.id
             if 'active_ids' in self.env.context:
@@ -117,104 +118,71 @@ class RmaMakePicking(models.TransientModel):
         'rma_make_picking.wizard.item',
         'wiz_id', string='Items')
 
-    def _get_picking_name(self):
-        return 'RMA picking {}'.format(
-            self.env.context.get('picking_type', 'in'))
-
-    def _get_picking_note(self):
-        return self._get_picking_name()
-
-    def _get_picking_data(self, rma, picking_type, partner_id):
-        return {
-            'origin': rma.rma_id.name,
-            'picking_type_id': picking_type.id,
-            'move_type': 'one',  # direct
-            'state': 'draft',
-            'date': time.strftime(DT_FORMAT),
-            'partner_id': partner_id,
-            'company_id': rma.company_id.id,
-            'location_id': self.src_location_id.id,
-            'location_dest_id': self.dest_location_id.id,
-            'note': self._get_picking_note(),
+    def _get_procurement_group_data(self, rma):
+        group_data = {
+            'name': rma.name,
+            'rma_id': rma.id,
         }
+        return group_data
 
-    def _get_picking_line_data(self, rma, picking, line, qty):
-        return {
+    @api.model
+    def _get_suitable_route(self, rma_line, picking_type):
+        """Return the routes to assign on RMA lines
+        based on a location usage.
+
+        If no match return None.
+        """
+        if rma_line.route_id:
+            return rma_line.route_id
+        else:
+            routes = self.env['stock.location.route'].search(
+                [('rma_selectable', '=', True),
+                 ('warehouse_selectable', '=',True)])
+            for route in routes:
+                for rule in route.pull_ids:
+                    if rule.picking_type_id.code == picking_type:
+                        return route
+        raise ValidationError(
+            _('No route defined'))
+
+    @api.model
+    def _get_procurement_data(self, line, qty, route):
+        procurement_data = {
             'name': line.product_id.name_template,
-            'priority': '0',
-            'date': time.strftime(DT_FORMAT),
-            'date_expected': time.strftime(DT_FORMAT),
+            'group_id': group.id,
+            'origin': rma.rma_id.name,
+            'warehouse_id': self.warehouse_id.id,
+            'date_planned': time.strftime(DT_FORMAT),
             'product_id': line.product_id.id,
-            'product_uom_qty': qty,
+            'product_qty': qty,
             'product_uom': line.product_id.product_tmpl_id.uom_id.id,
-            'partner_id': rma.rma_id.partner_id.id,
-            'picking_id': picking.id,
-            'state': 'draft',
-            'price_unit': line.price_unit,
-            'company_id': rma.company_id.id,
-            'location_id': self.src_location_id.id,
-            'location_dest_id': self.dest_location_id.id,
-            'note': self._get_picking_note(),
-            'rma_id': line.id
+            'location_id': self.dest_location_id.id,
+            'company_id': line.company_id.id,
+            'rma_line_id': line.id,
+            'route_ids': [(6,0,route)]
         }
+        return procurement_data
 
-    def _create_picking(self, rma, picking_type):
-        warehouse_rec = self.warehouse_id
-        if picking_type == 'in':
-            if rma.type == 'customer':
-                rma_picking_type = warehouse_rec.rma_cust_in_type_id
-            else:
-                rma_picking_type = warehouse_rec.rma_sup_in_type_id
-            write_field = 'move_in_id'
+    @api.model
+    def _create_procurement(self, rma_line, picking_type):
+        procurement_group = self._get_procurement_group_data(rma_line)
+        if picking_type == 'incoming':
+            qty = rma_line.qty_to_receive
         else:
-            if rma.type == 'customer':
-                rma_picking_type = warehouse_rec.rma_cust_out_type_id
-            else:
-                rma_picking_type = warehouse_rec.rma_sup_out_type_id
-            write_field = 'move_out_id'
-
-        if len(rma.rma_id.delivery_address_id):
-            partner_id = rma.rma_id.delivery_address_id.id
-        else:
-            partner_id = rma.rma_id.partner_id.id
-
+            qty = line.qty_to_deliver
+        route = self._get_suitable_route(rma_line, picking_type)
+        procurement_data = self._get_procurement_data(
+            rma_line, procurement_group, qty, route)
         # create picking
-        picking = self.env['stock.picking'].create(
-            self._get_picking_data(rma, rma_picking_type, partner_id))
+        procurement = self.env['procurement.order'].create(procurement_data)
+        procurement.run()
+        action = procurement.do_view_pickings()
+        return action
 
-        # Create picking lines
-        for line in self.item_ids:
-            if picking_type == 'in':
-                qty = line.qty_to_receive
-            else:
-                qty = line.qty_to_deliver
-            move = self.env['stock.move'].create(
-                self._get_picking_line_data(rma, picking, line.line_id, qty))
-            line.write({write_field: move.id})
-
-        if picking:
-            picking.signal_workflow('button_confirm')
-            picking.action_assign()
-
-        domain = ("[('picking_type_id', '=', %s), ('partner_id', '=', %s)]" %
-                  (rma_picking_type.id, partner_id))
-
-        view_id = self.env['ir.ui.view'].search(
-            [('model', '=', 'stock.picking'),
-             ('type', '=', 'form')])[0]
-        return {
-            'name': self._get_picking_name(),
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': view_id.id,
-            'domain': domain,
-            'res_model': 'stock.picking',
-            'res_id': picking.id,
-            'type': 'ir.actions.act_window',
-        }
 
     @api.multi
     def action_create_picking(self):
+        """Method called when the user clicks on create picking"""
         rma_line_ids = self.env['rma.order.line'].browse(
             self.env.context['active_ids'])
         picking_type = self.env.context.get('picking_type')
@@ -224,14 +192,14 @@ class RmaMakePicking(models.TransientModel):
                     _('RMA %s is not approved') %
                     line.rma_id.name)
             if line.operation_id.type not in ('replace', 'repair') and \
-                    picking_type == 'out' and line.type == 'customer':
+                    picking_type == 'outgoing' and line.type == 'customer':
                 raise exceptions.Warning(
                     _('Only refunds allowed for at least one line'))
             if line.operation_id.type not in ('replace', 'repair') and \
-                    picking_type == 'in' and line.type == 'supplier':
+                    picking_type == 'incoming' and line.type == 'supplier':
                 raise exceptions.Warning(
                     _('Only refunds allowed for at least one line'))
-            return self._create_picking(line, picking_type)
+            return self._create_procurement(line, picking_type)
 
     @api.multi
     def action_cancel(self):

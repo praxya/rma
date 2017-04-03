@@ -32,7 +32,8 @@ class RmaOrder(models.Model):
                        states={'progress': [('readonly', False)]},
                        copy=False)
     type = fields.Selection(
-        [('customer', 'Customer'), ('supplier', 'Supplier')],
+        [('customer', 'Customer'), ('supplier', 'Supplier'),
+         ('dropship', 'Dropship')],
         string="Type", required=True, default=_get_default_type, readonly=True)
     reference = fields.Char(string='Reference',
                             help="The partner reference of this RMA order.",
@@ -70,11 +71,18 @@ class RmaOrder(models.Model):
     requested_by = fields.Many2one('res.users', 'Requested_by',
                                    track_visibility='onchange',
                                    default=lambda self: self.env.user)
+    is_dropship = fields.Boolean('It is a dropship',
+                                 readonly=True,
+                                 states={'draft': [('readonly', False)]},
+                                 help='Another RMA will be created when '
+                                      'confirming')
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     rma_line_ids = fields.One2many('rma.order.line', 'rma_id',
                                    string='RMA lines',
                                    copy=False)
+    rma_id = fields.Many2one('rma.order', string='Related RMA',
+                             ondelete='cascade')
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
                                    required=True, readonly=True,
                                    states={'draft': [('readonly', False)]},
@@ -460,7 +468,8 @@ class RmaOrderLine(models.Model):
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     type = fields.Selection(related='rma_id.type')
-
+    route_id = fields.Many2one('stock.location.route', string='Route',
+                               domain=[('rma_selectable', '=', True)])
     product_qty = fields.Float(
         string='Ordered Qty', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),
