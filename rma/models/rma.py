@@ -32,8 +32,7 @@ class RmaOrder(models.Model):
                        states={'progress': [('readonly', False)]},
                        copy=False)
     type = fields.Selection(
-        [('customer', 'Customer'), ('supplier', 'Supplier'),
-         ('dropship', 'Dropship')],
+        [('customer', 'Customer'), ('supplier', 'Supplier')],
         string="Type", required=True, default=_get_default_type, readonly=True)
     reference = fields.Char(string='Reference',
                             help="The partner reference of this RMA order.",
@@ -71,7 +70,7 @@ class RmaOrder(models.Model):
     requested_by = fields.Many2one('res.users', 'Requested_by',
                                    track_visibility='onchange',
                                    default=lambda self: self.env.user)
-    is_dropship = fields.Boolean('It is a dropship',
+    is_dropship = fields.Boolean('Is dropship',
                                  readonly=True,
                                  states={'draft': [('readonly', False)]},
                                  help='Another RMA will be created when '
@@ -151,6 +150,26 @@ class RmaOrder(models.Model):
                                 string='# of Outgoing Shipments',
                                 copy=False)
 
+    @api.model
+    def _default_dest_location_id(self):
+        if self.warehouse_id.lot_rma_id:
+            return self.warehouse_id.lot_rma_id.id
+        else:
+            return False
+
+    @api.model
+    def _default_src_location_id(self):
+        if self.type == 'customer':
+            if self.partner_id.property_stock_customer:
+                return self.partner_id.property_stock_customer.id
+            else:
+                return False
+        else:
+            if self.partner_id.property_stock_supplier:
+                return self.partner_id.property_stock_supplier.id
+            else:
+                return False
+
     def _prepare_rma_line_from_inv_line(self, line):
         data = {
             'invoice_line_id': line.id,
@@ -158,6 +177,8 @@ class RmaOrder(models.Model):
             'name': line.name,
             'origin': line.invoice_id.number,
             'uom_id': line.uom_id.id,
+            'src_location_id': self._default_src_location_id(),
+            'dest_location_id': self._default_dest_location_id(),
             'operation_id': line.product_id.categ_id.rma_operation_id.id,
             'product_qty': line.quantity,
             'price_unit': line.invoice_id.currency_id.compute(
@@ -165,6 +186,25 @@ class RmaOrder(models.Model):
             'rma_id': self._origin.id
         }
         return data
+
+    @api.model
+    def _prepare_supplier_rma(self):
+        values = self.copy()
+        return values
+
+    @api.onchange('state')
+    @api.one
+    def on_change_state(self):
+        if self.is_dropship == 'dropship':
+            if self.state == 'approved':
+                if not self.rma_id:
+                    rma_data = self._prepare_supplier_rma
+                    suppplier_rma = self.create(rma_data)
+                    self.rma_id == suppplier_rma
+            else:
+                if self.rma_id:
+                    self.rma_id.state = self.state
+        return {}
 
     @api.onchange('add_invoice_id')
     def on_change_invoice(self):
@@ -338,8 +378,8 @@ class RmaOrderLine(models.Model):
     @api.depends('move_ids.state', 'state', 'operation_id', 'type')
     def _compute_qty_to_receive(self):
         qty = 0.0
-        if self.operation_id.type in ('repair', 'replace') or self.type == \
-                "customer":
+        if self.operation_id.type in ('repair', 'replace') or \
+                (self.type == "customer" and not self.rma_id.is_dropship):
             for move in self.move_ids:
                 if move.state == 'done' and (
                         move.picking_id.picking_type_id.code == 'incoming'):
@@ -352,8 +392,8 @@ class RmaOrderLine(models.Model):
     @api.depends('move_ids.state', 'state', 'operation_id', 'type')
     def _compute_qty_to_deliver(self):
         qty = 0.0
-        if self.operation_id.type in ('repair', 'replace') or self.type == \
-                "supplier":
+        if self.operation_id.type in ('repair', 'replace') and not \
+                self.rma_id.is_dropship or self.type == "supplier":
             for move in self.move_ids:
                 if move.state == 'done' and \
                         move.picking_id.picking_type_id.code == 'outgoing':
@@ -421,9 +461,28 @@ class RmaOrderLine(models.Model):
             move_list.append(move.id)
         self.move_count = len(list(set(move_list)))
 
+    @api.model
+    def _default_dest_location_id(self):
+        if self.rma_id.warehouse_id.lot_rma_id:
+            return self.rma_id.warehouse_id.lot_rma_id.id
+        else:
+            return False
+
+    @api.model
+    def _default_src_location_id(self):
+        if self.type == 'customer':
+            if self.rma_id.partner_id.property_stock_customer:
+                return lines.rma_id.partner_id.property_stock_customer.id
+            else:
+                return False
+        else:
+            if self.rma_id.partner_id.property_stock_supplier:
+                return lines.rma_id.partner_id.property_stock_supplier.id
+            else:
+                return False
+
     move_count = fields.Integer(compute=_compute_move_count,
                                 string='# of Moves', copy=False, default=0)
-
     name = fields.Text(string='Description', required=True)
     origin = fields.Char(string='Source Document',
                          help="Reference of the document that produced "
@@ -468,8 +527,17 @@ class RmaOrderLine(models.Model):
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     type = fields.Selection(related='rma_id.type')
-    route_id = fields.Many2one('stock.location.route', string='Route',
-                               domain=[('rma_selectable', '=', True)])
+    src_location_id = fields.Many2one(
+        'stock.location', string='Source Location',
+        required=True,
+        default=_default_src_location_id,
+        help="Location where the returned products are from.")
+
+    dest_location_id = fields.Many2one(
+        'stock.location', string='Destination Location',
+        required=True,
+        default=_default_dest_location_id,
+        help="Location where the returned products are from.")
     product_qty = fields.Float(
         string='Ordered Qty', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),
@@ -587,5 +655,6 @@ class RmaOperation(models.Model):
     type = fields.Selection([
         ('refund', 'Refund'), ('repair', 'Receive and repair'),
         ('replace', 'Replace')], string="Type", required=True)
+
     rma_line_ids = fields.One2many('rma.order.line', 'operation_id',
                                    'RMA lines')

@@ -6,12 +6,6 @@
         <field name="model">rma_make_picking.wizard</field>
         <field name="arch" type="xml">
             <form string="Select exchange lines to add in picking">
-                <group name="locations" string="Locations">
-                    <field name="warehouse_id"
-                           string="Destination Warehouse"/>
-                    <field name="src_location_id"/>
-                    <field name="dest_location_id"/>
-                </group>
                 <separator string="Select lines for picking"/>
                 <field name="item_ids">
                     <tree string="RMA Lines" editable="bottom">
@@ -40,12 +34,6 @@
         <field name="model">rma_make_picking.wizard</field>
         <field name="arch" type="xml">
             <form string="Select exchange lines to add in picking">
-                <group name="locations" string="Locations">
-                    <field name="warehouse_id"
-                           string="Source Warehouse"/>
-                    <field name="src_location_id"/>
-                    <field name="dest_location_id"/>
-                </group>
                 <separator string="Select lines for picking"/>
                 <field name="item_ids">
                     <tree string="RMA Lines" editable="bottom">
