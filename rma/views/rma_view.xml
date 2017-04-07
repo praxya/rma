@@ -32,8 +32,6 @@
                     <field name="product_id"/>
                     <field name="name"/>
                     <field name="operation_id"/>
-                    <field name="src_location_id"/>
-                    <field name="dest_location_id"/>
                     <field name="uom_id" groups="product.group_uom"/>
                     <field name="product_qty"/>
                     <field name="qty_to_receive"/>
@@ -83,8 +81,6 @@
                             <field name="product_id" readonly="1"/>
                             <field name="price_unit" readonly="1"/>
                             <field name="operation_id" readonly="1"/>
-                            <field name="src_location_id" readonly="1"/>
-                            <field name="dest_location_id" readonly="1"/>
                             <field name="invoice_line_id" invisible="True"/>
                             <field name="uom_id" groups="product.group_uom" readonly="1"/>
                             <field name="product_qty"/>
@@ -254,8 +250,6 @@
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="operation_id"/>
-                                    <field name="src_location_id"/>
-                                    <field name="dest_location_id"/>
                                     <field name="product_qty"/>
                                     <field name="uom_id" groups="product.group_uom"/>
                                     <field name="qty_to_receive"/>
@@ -397,8 +391,6 @@
                                     <field name="product_id"/>
                                     <field name="name"/>
                                     <field name="operation_id"/>
-                                    <field name="src_location_id"/>
-                                    <field name="dest_location_id"/>
                                     <field name="product_qty"/>
                                     <field name="uom_id" groups="product.group_uom"/>
                                     <field name="qty_to_receive"/>
@@ -478,6 +470,8 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="type"/>
+                    <field name="route_in_id"/>
+                    <field name="route_out_id"/>
                 </tree>
             </field>
         </record>
@@ -491,6 +485,8 @@
                         <field name="code"/>
                         <field name="name"/>
                         <field name="type"/>
+                        <field name="route_in_id"/>
+                        <field name="route_out_id"/>
                     </group>
                 </form>
             </field>

@@ -152,10 +152,16 @@ class RmaOrder(models.Model):
 
     @api.model
     def _default_dest_location_id(self):
-        if self.warehouse_id.lot_rma_id:
-            return self.warehouse_id.lot_rma_id.id
+        if self.type == 'customer':
+            if self.partner_id.property_stock_supplier:
+                return self.partner_id.property_stock_supplier.id
+            else:
+                return False
         else:
-            return False
+            if self.partner_id.property_stock_supplier:
+                return self.partner_id.property_stock_supplier.id
+            else:
+                return False
 
     @api.model
     def _default_src_location_id(self):
@@ -165,8 +171,8 @@ class RmaOrder(models.Model):
             else:
                 return False
         else:
-            if self.partner_id.property_stock_supplier:
-                return self.partner_id.property_stock_supplier.id
+            if self.warehouse_id.lot_rma_id:
+                return self.warehouse_id.lot_rma_id.id
             else:
                 return False
 
@@ -527,17 +533,8 @@ class RmaOrderLine(models.Model):
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     type = fields.Selection(related='rma_id.type')
-    src_location_id = fields.Many2one(
-        'stock.location', string='Source Location',
-        required=True,
-        default=_default_src_location_id,
-        help="Location where the returned products are from.")
-
-    dest_location_id = fields.Many2one(
-        'stock.location', string='Destination Location',
-        required=True,
-        default=_default_dest_location_id,
-        help="Location where the returned products are from.")
+    route_id = fields.Many2one('stock.location.route', string='Route',
+                               domain=[('rma_selectable', '=', True)])
     product_qty = fields.Float(
         string='Ordered Qty', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),
@@ -655,6 +652,11 @@ class RmaOperation(models.Model):
     type = fields.Selection([
         ('refund', 'Refund'), ('repair', 'Receive and repair'),
         ('replace', 'Replace')], string="Type", required=True)
-
+    route_in_id = fields.Many2one(
+        'stock.location', string='Source Location',
+        help="Inbound route.")
+    route_out_id = fields.Many2one(
+        'stock.location', string='Destination Location',
+        help="Outbounf route.")
     rma_line_ids = fields.One2many('rma.order.line', 'operation_id',
                                    'RMA lines')
