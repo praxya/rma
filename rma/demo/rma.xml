@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo noupdate="0">
     <record id="rma_operation_replace" model="rma.operation">
         <field name="name">Replace</field>
         <field name="code">RPL</field>
         <field name="type">replace</field>
+        <field name="route_in_cust_id" ref="rma.route_rma_customer_inbound"/>
+        <field name="route_in_sup_id" ref="rma.route_rma_supplier_inbound"/>
+        <field name="route_out_cust_id" ref="rma.route_rma_customer_outbound"/>
+        <field name="route_out_sup_id" ref="rma.route_rma_supplier_outbound"/>
     </record>
 
     <record id="rma_operation_repair" model="rma.operation">
         <field name="name">Repair</field>
         <field name="code">RPR</field>
         <field name="type">repair</field>
+        <field name="route_in_cust_id" ref="rma.route_rma_customer_inbound"/>
+        <field name="route_in_sup_id" ref="rma.route_rma_supplier_inbound"/>
+        <field name="route_out_cust_id" ref="rma.route_rma_customer_outbound"/>
+        <field name="route_out_sup_id" ref="rma.route_rma_supplier_outbound"/>
     </record>
 
     <record id="rma_operation_refund" model="rma.operation">
         <field name="name">Refund</field>
         <field name="code">RF</field>
         <field name="type">refund</field>
+        <field name="route_in_cust_id" ref="rma.route_rma_customer_inbound"/>
+        <field name="route_in_sup_id" ref="rma.route_rma_supplier_inbound"/>
+        <field name="route_out_cust_id" ref="rma.route_rma_customer_outbound"/>
+        <field name="route_out_sup_id" ref="rma.route_rma_supplier_outbound"/>
     </record>
 </odoo>

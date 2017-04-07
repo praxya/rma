@@ -18,7 +18,7 @@
                 </field>
                 <footer>
                     <button
-                            string="Create picking"
+                            string="Receive Products"
                             name="action_create_picking" type="object"
                             class="oe_highlight"/>
                     or
@@ -45,7 +45,7 @@
                 </field>
                 <footer>
                     <button
-                            string="Create picking"
+                            string="Deliver Products"
                             name="action_create_picking" type="object"
                             class="oe_highlight"/>
                     or

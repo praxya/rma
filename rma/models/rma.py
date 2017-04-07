@@ -70,18 +70,11 @@ class RmaOrder(models.Model):
     requested_by = fields.Many2one('res.users', 'Requested_by',
                                    track_visibility='onchange',
                                    default=lambda self: self.env.user)
-    is_dropship = fields.Boolean('Is dropship',
-                                 readonly=True,
-                                 states={'draft': [('readonly', False)]},
-                                 help='Another RMA will be created when '
-                                      'confirming')
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     rma_line_ids = fields.One2many('rma.order.line', 'rma_id',
                                    string='RMA lines',
                                    copy=False)
-    rma_id = fields.Many2one('rma.order', string='Related RMA',
-                             ondelete='cascade')
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
                                    required=True, readonly=True,
                                    states={'draft': [('readonly', False)]},
@@ -197,20 +190,6 @@ class RmaOrder(models.Model):
     def _prepare_supplier_rma(self):
         values = self.copy()
         return values
-
-    @api.onchange('state')
-    @api.one
-    def on_change_state(self):
-        if self.is_dropship == 'dropship':
-            if self.state == 'approved':
-                if not self.rma_id:
-                    rma_data = self._prepare_supplier_rma
-                    suppplier_rma = self.create(rma_data)
-                    self.rma_id == suppplier_rma
-            else:
-                if self.rma_id:
-                    self.rma_id.state = self.state
-        return {}
 
     @api.onchange('add_invoice_id')
     def on_change_invoice(self):
@@ -385,7 +364,7 @@ class RmaOrderLine(models.Model):
     def _compute_qty_to_receive(self):
         qty = 0.0
         if self.operation_id.type in ('repair', 'replace') or \
-                (self.type == "customer" and not self.rma_id.is_dropship):
+                self.type == "customer":
             for move in self.move_ids:
                 if move.state == 'done' and (
                         move.picking_id.picking_type_id.code == 'incoming'):
@@ -398,8 +377,8 @@ class RmaOrderLine(models.Model):
     @api.depends('move_ids.state', 'state', 'operation_id', 'type')
     def _compute_qty_to_deliver(self):
         qty = 0.0
-        if self.operation_id.type in ('repair', 'replace') and not \
-                self.rma_id.is_dropship or self.type == "supplier":
+        if self.operation_id.type in ('repair', 'replace') or \
+                self.type == "supplier":
             for move in self.move_ids:
                 if move.state == 'done' and \
                         move.picking_id.picking_type_id.code == 'outgoing':
@@ -652,11 +631,21 @@ class RmaOperation(models.Model):
     type = fields.Selection([
         ('refund', 'Refund'), ('repair', 'Receive and repair'),
         ('replace', 'Replace')], string="Type", required=True)
-    route_in_id = fields.Many2one(
-        'stock.location', string='Source Location',
-        help="Inbound route.")
-    route_out_id = fields.Many2one(
-        'stock.location', string='Destination Location',
-        help="Outbounf route.")
+    route_in_cust_id = fields.Many2one(
+        'stock.location.route', string='Inbound Route Customer',
+        domain=[('rma_selectable', '=', True)])
+    route_out_cust_id = fields.Many2one(
+        'stock.location.route', string='Outbound Route Customer',
+        domain=[('rma_selectable', '=', True)])
+    route_in_sup_id = fields.Many2one(
+        'stock.location.route', string='Inbound Route Supplier',
+        domain=[('rma_selectable', '=', True)])
+    route_out_sup_id = fields.Many2one(
+        'stock.location.route', string='Outbound Route Supplier',
+        domain=[('rma_selectable', '=', True)])
+    route_dropship_id = fields.Many2one(
+        'stock.location.route', string='Dropship Route',
+        domain=[('rma_selectable', '=', True)])
     rma_line_ids = fields.One2many('rma.order.line', 'operation_id',
                                    'RMA lines')
+    is_dropship = fields.Boolean('Is dropship')

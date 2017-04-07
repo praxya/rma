@@ -231,10 +231,7 @@
                                    groups='rma.group_rma_delivery_invoice_address'/>
                             <field name="warehouse_id"/>
                             <field name="date_rma"/>
-                            <field name="is_dropship"/>
                             <field name="type" invisible="1"/>
-                            <field name="rma_id"
-                                   attrs="{'invisible': [('is_dropship', '!=', True)]}"/>
                         </group>
                     </group>
                     <notebook colspan="4">
@@ -373,9 +370,6 @@
                             <field name="warehouse_id"/>
                             <field name="date_rma"/>
                             <field name="type" invisible="1"/>
-                            <field name="is_dropship" readonly="1"/>
-                            <field name="rma_id"
-                                   attrs="{'invisible': [('is_dropship', '!=', True)]}"/>
                         </group>
                     </group>
                     <notebook colspan="4">
@@ -470,8 +464,12 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="type"/>
-                    <field name="route_in_id"/>
-                    <field name="route_out_id"/>
+                    <field name="route_in_cust_id"/>
+                    <field name="route_out_cust_id"/>
+                    <field name="route_in_sup_id"/>
+                    <field name="route_out_sup_id"/>
+                    <field name="route_dropship_id"/>
+                    <field name="is_dropship"/>
                 </tree>
             </field>
         </record>
@@ -485,8 +483,13 @@
                         <field name="code"/>
                         <field name="name"/>
                         <field name="type"/>
-                        <field name="route_in_id"/>
-                        <field name="route_out_id"/>
+                        <field name="route_in_cust_id" attrs="{'invisible': [('is_dropship', '=', True)]}"/>
+                        <field name="route_out_cust_id" attrs="{'invisible': [('is_dropship', '=', True)]}"/>
+                        <field name="route_in_sup_id" attrs="{'invisible': [('is_dropship', '=', True)]}"/>
+                        <field name="route_out_sup_id" attrs="{'invisible': [('is_dropship', '=', True)]}"/>
+                        <field name="route_dropship_id"
+                               attrs="{'invisible': [('is_dropship', '=', False)]}"/>
+                        <field name="is_dropship"/>
                     </group>
                 </form>
             </field>

@@ -20,6 +20,7 @@ class ProcurementOrder(models.Model):
                 procurement.rma_line_id.rma_id.delivery_address_id:
             res['partner_id'] = \
                 procurement.rma_line_id.rma_id.delivery_address_id.id
+            res['rma_id'] = procurement.rma_line_id.id
         return res
 
 

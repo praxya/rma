@@ -29,3 +29,10 @@ class StockMove(models.Model):
 
     rma_id = fields.Many2one('rma.order.line', string='RMA',
                              ondelete='restrict')
+
+    @api.model
+    def _prepare_picking_assign(self, move):
+        res = super(StockMove, self)._prepare_picking_assign(move)
+        if 'rma' in self.env.context:
+            res['rma_id'] = self.env.context['rma']
+        return res
