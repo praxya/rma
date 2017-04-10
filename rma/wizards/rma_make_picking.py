@@ -100,8 +100,7 @@ class RmaMakePicking(models.TransientModel):
         warehouse = line.rma_id.warehouse_id
 
         procurement_data = {
-            'name': line.rma_id.name + ' / ' + line.product_id.name_template \
-            + ' / ' + line.type,
+            'name': line.rma_id.name,
             'group_id': group.id,
             'origin': line.rma_id.name,
             'warehouse_id': warehouse.id,
@@ -131,7 +130,6 @@ class RmaMakePicking(models.TransientModel):
         procurement = self.env['procurement.order'].create(procurement_data)
         procurement.run()
         return procurement.id
-
 
     @api.multi
     def action_create_picking(self):
