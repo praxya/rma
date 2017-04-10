@@ -18,20 +18,15 @@ class RmaMakePicking(models.TransientModel):
 
     @api.returns('rma.order.line')
     def _prepare_item(self, line):
-        if line.operation_id.is_dropship:
-            route_in = route_out = line.operation_id.route_dropship_id.id
-        else:
-            if line.type == 'customer':
-                route_in = line.operation_id.route_in_cust_id.id
-                route_out = line.operation_id.route_out_cust_id.id
-            else:
-                route_in = line.operation_id.route_in_sup_id.id
-                route_out = line.operation_id.route_out_sup_id.id
-        if not route_in:
-            raise ValidationError('No inbound route define for this '
-                                  'operation')
-        elif not route_out:
-            raise ValidationError('No outbound route define for this '
+        route = None
+        if line.type == 'customer':
+            route = line.operation_id.route_customer.id
+        elif line.type == 'supplier':
+            route = line.operation_id.route_supplier.id
+        elif line.type == 'dropship':
+            route = line.operation_id.route_dropship.id
+        if not route:
+            raise ValidationError('No route define for this '
                                   'operation')
 
         values = {'product_id': line.product_id.id,
@@ -43,8 +38,7 @@ class RmaMakePicking(models.TransientModel):
                   'company_id': line.company_id.id,
                   'operation_id': line.operation_id.id,
                   'qty_to_receive': line.qty_to_receive,
-                  'route_in_id': route_in,
-                  'route_out_id': route_out,
+                  'route_id': route,
                   'qty_to_deliver': line.qty_to_deliver,
                   'line_id': line.id,
                   'wiz_id': self.env.context['active_id']}
@@ -89,23 +83,14 @@ class RmaMakePicking(models.TransientModel):
         return group_data
 
     @api.model
-    def _get_suitable_route(self, rma_line, picking_type):
-        route = False
+    def _get_procurement_data(self, line, group, qty, picking_type):
         if picking_type == 'incoming':
-            route = rma_line.route_in_id
-        if picking_type == 'outgoing':
-            route = rma_line.route_out_id
-        return route
-
-    @api.model
-    def _get_procurement_data(self, line, group, qty, route, picking_type):
-        if picking_type == 'incoming':
-            if line.operation_id.is_dropship:
+            if line.type == 'dropship':
                 location = self.env.ref('stock.stock_location_suppliers')
             else:
                 location = line.rma_id.warehouse_id.lot_rma_id
         else:
-            if line.operation_id.is_dropship:
+            if line.type == 'dropship':
                 location = self.env.ref('stock.stock_location_customers')
             else:
                 if line.type == 'customer':
@@ -126,7 +111,7 @@ class RmaMakePicking(models.TransientModel):
             'product_uom': line.product_id.product_tmpl_id.uom_id.id,
             'location_id': location.id,
             'rma_line_id': line.line_id.id,
-            'route_ids': [(4, route.id)]
+            'route_ids': [(4, line.route_id.id)]
         }
         return procurement_data
 
@@ -140,9 +125,8 @@ class RmaMakePicking(models.TransientModel):
             qty = rma_line.qty_to_receive
         else:
             qty = rma_line.qty_to_deliver
-        route = self._get_suitable_route(rma_line, picking_type)
         procurement_data = self._get_procurement_data(
-            rma_line, group, qty, route, picking_type)
+            rma_line, group, qty, picking_type)
         # create picking
         procurement = self.env['procurement.order'].create(procurement_data)
         procurement.run()
@@ -193,7 +177,8 @@ class RmaMakePickingItem(models.TransientModel):
                              string='RMA',
                              readonly=True)
     type = fields.Selection(
-        [('customer', 'Customer'), ('supplier', 'Supplier')])
+        [('customer', 'Customer'), ('supplier', 'Supplier'), ('dropship',
+                                                              'Dropship')])
     product_id = fields.Many2one('product.product', string='Product',
                                  readonly=True)
     state = fields.Selection([('draft', 'Draft'), ('to_approve', 'To Approve'),
@@ -202,12 +187,8 @@ class RmaMakePickingItem(models.TransientModel):
     company_id = fields.Many2one('res.company')
     name = fields.Char(string='Description', required=True)
     operation_id = fields.Many2one(comodel_name="rma.operation")
-    route_in_id = fields.Many2one(
-        'stock.location.route', string='Inbound Route',
-        help="Inbound route.")
-    route_out_id = fields.Many2one(
-        'stock.location.route', string='Outbound Route',
-        help="Outbound route.")
+    route_id = fields.Many2one(
+        'stock.location.route', string='Route')
     product_qty = fields.Float(
         string='Quantity Ordered', copy=False,
         digits=dp.get_precision('Product Unit of Measure'),

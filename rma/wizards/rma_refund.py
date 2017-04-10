@@ -119,7 +119,7 @@ class RmaRefund(models.TransientModel):
             new_invoice.type in ['out_refund', 'out_invoice']) \
             else 'action_invoice_tree2'
         result = self.env.ref('account.%s' % action).read()[0]
-        invoice_domain = result['domain']
+        invoice_domain = eval(result['domain'])
         invoice_domain.append(('id', '=', new_invoice.id))
         result['domain'] = invoice_domain
         return result

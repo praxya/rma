@@ -86,7 +86,7 @@
         <field name="default_location_dest_id"
                ref="stock.stock_location_suppliers"/>
         <field name="warehouse_id" eval="False"/>
-        <field name="code">outgoing</field>
+        <field name="code">incoming</field>
     </record>
 
     <record id="picking_type_rma_dropship" model="stock.picking.type">
@@ -116,8 +116,8 @@
         <field name="rma_sup_in_type_id" ref="picking_type_rma_sup_in"/>
     </record>
 
-    <record id="route_rma_customer_inbound" model='stock.location.route'>
-        <field name="name">RMA Inbound Customer</field>
+    <record id="route_rma_customer" model='stock.location.route'>
+        <field name="name">RMA Customer</field>
         <field name="sequence">10</field>
         <field name="sale_selectable" eval="False"/>
         <field name="product_selectable" eval="False"/>
@@ -126,28 +126,8 @@
         <field name="rma_selectable" eval="True"/>
     </record>
 
-    <record id="route_rma_customer_outbound" model='stock.location.route'>
-        <field name="name">RMA Outbound Customer</field>
-        <field name="sequence">10</field>
-        <field name="sale_selectable" eval="False"/>
-        <field name="product_selectable" eval="False"/>
-        <field name="product_categ_selectable" eval="False"/>
-        <field name="warehouse_selectable" eval="False"/>
-        <field name="rma_selectable" eval="True"/>
-    </record>
-
-    <record id="route_rma_supplier_inbound" model='stock.location.route'>
-        <field name="name">RMA Inbound Supplier</field>
-        <field name="sequence">10</field>
-        <field name="sale_selectable" eval="False"/>
-        <field name="product_selectable" eval="False"/>
-        <field name="product_categ_selectable" eval="False"/>
-        <field name="warehouse_selectable" eval="False"/>
-        <field name="rma_selectable" eval="True"/>
-    </record>
-
-    <record id="route_rma_supplier_outbound" model='stock.location.route'>
-        <field name="name">RMA Outbound Supplier</field>
+    <record id="route_rma_supplier" model='stock.location.route'>
+        <field name="name">RMA Supplier</field>
         <field name="sequence">10</field>
         <field name="sale_selectable" eval="False"/>
         <field name="product_selectable" eval="False"/>
@@ -173,7 +153,7 @@
         <field name="location_src_id" ref="stock.stock_location_customers"/>
         <field name="location_id" ref="rma.location_rma"/>
         <field name="procure_method">make_to_stock</field>
-        <field name="route_id" ref="rma.route_rma_customer_inbound"/>
+        <field name="route_id" ref="rma.route_rma_customer"/>
         <field name="picking_type_id" ref="rma.picking_type_rma_cust_in"/>
     </record>
 
@@ -184,7 +164,7 @@
         <field name="location_src_id" ref="rma.location_rma"/>
         <field name="location_id" ref="stock.stock_location_customers"/>
         <field name="procure_method">make_to_stock</field>
-        <field name="route_id" ref="rma.route_rma_customer_outbound"/>
+        <field name="route_id" ref="rma.route_rma_customer"/>
         <field name="picking_type_id" ref="rma.picking_type_rma_cust_out"/>
     </record>
 
@@ -195,7 +175,7 @@
         <field name="location_id" ref="stock.stock_location_suppliers"/>
         <field name="location_src_id" ref="rma.location_rma"/>
         <field name="procure_method">make_to_stock</field>
-        <field name="route_id" ref="rma.route_rma_supplier_outbound"/>
+        <field name="route_id" ref="rma.route_rma_supplier"/>
         <field name="picking_type_id" ref="rma.picking_type_rma_sup_out"/>
     </record>
 
@@ -206,7 +186,7 @@
         <field name="location_id" ref="rma.location_rma"/>
         <field name="location_src_id" ref="stock.stock_location_suppliers"/>
         <field name="procure_method">make_to_stock</field>
-        <field name="route_id" ref="rma.route_rma_supplier_inbound"/>
+        <field name="route_id" ref="rma.route_rma_supplier"/>
         <field name="picking_type_id" ref="rma.picking_type_rma_sup_in"/>
     </record>
 

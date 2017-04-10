@@ -34,9 +34,10 @@ To configure this module, you need to:
 #. Go to Inventory > Settings > Configuration > Warehouse management >
    Warehouses and add a default RMA location and RMA picking type for customers
    and suppliers RMA picking type. In case the warehouse is configured to
-   use routes. It's very important to select the type of operation supplier if
-   we are moving in the company and customer if we are moving out of the
-   company.
+   use routes, you need to create at least one route per rma type with at
+   least two push rules (one for inbound another for outbound) it's very
+   important to select the typeof operation supplier if we are moving in the
+   company and customer if we are moving out of the company.
 
 Usage
 =====
