@@ -154,7 +154,7 @@ class RmaRefund(models.TransientModel):
         team_id = team_ids[0] if team_ids else False
         if team_id:
             values['team_id'] = team_id.id
-        if len(order.delivery_address_id):
+        if len(order.invoice_address_id):
             values['partner_id'] = order.invoice_address_id.id
         else:
             values['partner_id'] = order.partner_id.id
