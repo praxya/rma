@@ -79,7 +79,7 @@ class RmaOrder(models.Model):
                                    default=lambda self: self.env.user)
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self:
-                                 self.env.user.company_id.id)
+                                 self.env.user.company_id)
     rule_id = fields.Many2one('rma.rule', string='Approval Criteria',
                               compute=_compute_rule_id)
     rma_line_ids = fields.One2many('rma.order.line', 'rma_id',
