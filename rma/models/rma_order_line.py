@@ -16,8 +16,6 @@ import calendar
 
 class RmaOrderLine(models.Model):
     _name = "rma.order.line"
-    _rec_name = "rma_id"
-    _order = "sequence"
 
     @api.one
     def _compute_in_shipment_count(self):
@@ -239,7 +237,7 @@ class RmaOrderLine(models.Model):
                               "this rma.")
     state = fields.Selection(related='rma_id.state')
     operation_id = fields.Many2one(
-        comodel_name="rma.operation", string="Operation")
+        comodel_name="rma.operation", string="Operation", ondelete='set null')
 
     invoice_line_id = fields.Many2one('account.invoice.line',
                                       string='Invoice Line',
@@ -260,7 +258,7 @@ class RmaOrderLine(models.Model):
                               help="Gives the sequence of this line "
                               "when displaying the rma.")
     rma_id = fields.Many2one('rma.order', string='RMA',
-                             ondelete='cascade')
+                             ondelete='cascade', required=True)
     uom_id = fields.Many2one('product.uom', string='Unit of Measure')
     product_id = fields.Many2one('product.product', string='Product',
                                  ondelete='restrict')

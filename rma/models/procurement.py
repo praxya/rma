@@ -30,4 +30,4 @@ class ProcurementOrder(models.Model):
 class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 
-    rma_id = fields.Many2one('rma.order', 'RMA')
+    rma_id = fields.Many2one('rma.order', 'RMA', ondelete='set null')
