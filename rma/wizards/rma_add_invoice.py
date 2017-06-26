@@ -52,20 +52,27 @@ class RmaAddinvoice(models.TransientModel):
         operation = line.product_id.rma_operation_id or False
         if not operation:
             operation = line.product_id.categ_id.rma_operation_id or False
+        # if not operation:
+        #     raise ValidationError(_("You must define a RMA operation in the "
+        #                             "product sheet or product category, for "
+        #                             "product " + line.product_id.name))
         data = {
             'invoice_line_id': line.id,
             'product_id': line.product_id.id,
             'name': line.product_id.name_template,
             'origin': line.invoice_id.number,
-            'uom_id': line.uom_id.id,
-            'operation_id': operation.id,
+            'uom_id': line.uos_id.id,
             'product_qty': line.quantity,
             'price_unit': line.invoice_id.currency_id.compute(
-                line.price_unit, line.currency_id, round=False),
+                line.price_unit, line.invoice_id.currency_id, round=False),
             'delivery_address_id': self.invoice_id.partner_id.id,
             'invoice_address_id': self.invoice_id.partner_id.id,
             'rma_id': self.rma_id.id
         }
+        if operation:
+            data.update({
+                'operation_id': operation.id,
+            })
         if not operation:
             operation = self.env['rma.operation'].search(
                 [('type', '=', self.rma_id.type)], limit=1)
@@ -77,11 +84,12 @@ class RmaAddinvoice(models.TransientModel):
             if not route:
                 raise ValidationError("Please define an rma route")
         data.update(
-            {'in_route_id': operation.in_route_id.id or route,
-             'out_route_id': operation.out_route_id.id or route,
+            {'in_route_id': operation.in_route_id.id or route.id,
+             'out_route_id': operation.out_route_id.id or route.id,
              'receipt_policy': operation.receipt_policy,
-             'location_id': operation.location_id.id or
-                            self.env.ref('stock.stock_location_stock').id,
+             'location_id':
+                operation.location_id.id or
+                self.env.ref('stock.stock_location_stock').id,
              'operation_id': operation.id,
              'refund_policy': operation.refund_policy,
              'delivery_policy': operation.delivery_policy
