@@ -29,7 +29,7 @@
                 <tree string="RMA Line"
                       decoration-muted="state in ('draft','to_approve')">
                     <field name="rma_id"/>
-                    <field name="state" invisible="1"/>
+                    <field name="state"/>
                     <field name="partner_id"/>
                     <field name="product_id"/>
                     <field name="name"/>

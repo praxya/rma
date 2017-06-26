@@ -565,7 +565,7 @@ class RmaOrderLine(models.Model):
 
     @api.multi
     def action_view_procurements(self):
-        action = self.env.ref('procurement.procurement_order_action_exceptions')
+        action = self.env.ref('procurement.procurement_action5')
         result = action.read()[0]
         procurements = self.procurement_ids.filtered(
                 lambda p: p.state == 'exception').ids

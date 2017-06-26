@@ -88,8 +88,7 @@ class RmaMakePicking(models.TransientModel):
         }
         return group_data
 
-    @api.model
-    def _get_address(self, line):
+    def _get_address_line(self, line):
         if line.delivery_address:
             delivery_address = line.delivery_address
         elif line.customer_to_supplier:
@@ -104,10 +103,8 @@ class RmaMakePicking(models.TransientModel):
         elif type == 'customer':
             return delivery_address_id.property_stock_customer
 
-
-    @api.model
     def _get_procurement_data(self, line, group, qty, picking_type):
-        delivery_address_id = self._get_address(line)
+        delivery_address_id = self._get_address_line(line)
         if picking_type == 'incoming':
             if line.customer_to_supplier:
                 location = self._get_address_location(
@@ -141,7 +138,6 @@ class RmaMakePicking(models.TransientModel):
         }
         return procurement_data
 
-    @api.model
     def _create_procurement(self, rma_line, picking_type):
         group = self.find_procurement_group(rma_line)
         if not group:
@@ -187,7 +183,7 @@ class RmaMakePicking(models.TransientModel):
             action = procurements.do_view_pickings()
         else:
             action = self.env.ref(
-                'procurement.procurement_order_action_exceptions')
+                'procurement.procurement_action5')
             action = action.read()[0]
             # choose the view_mode accordingly
             procurement_ids = procurements.ids
