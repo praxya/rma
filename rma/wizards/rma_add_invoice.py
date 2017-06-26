@@ -47,15 +47,10 @@ class RmaAddinvoice(models.TransientModel):
                                      'invoice_line_id', 'rma_add_invoice_id',
                                      string='Invoice Lines')
 
-
     def _prepare_rma_line_from_inv_line(self, line):
         operation = line.product_id.rma_operation_id or False
         if not operation:
             operation = line.product_id.categ_id.rma_operation_id or False
-        # if not operation:
-        #     raise ValidationError(_("You must define a RMA operation in the "
-        #                             "product sheet or product category, for "
-        #                             "product " + line.product_id.name))
         data = {
             'invoice_line_id': line.id,
             'product_id': line.product_id.id,
