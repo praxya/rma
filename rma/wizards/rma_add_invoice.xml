@@ -14,8 +14,12 @@
                 </group>
                 <separator string="Select Invoice from customer"/>
                 <group>
-                    <field name="invoice_id"
+                    <!-- <field name="invoice_id"
                            domain="[('type','=','out_invoice'),'|',('commercial_partner_id','=',partner_id),
+                           ('partner_id','=',partner_id), (('state','not in',['draft','cancel']))]"
+                            context="{'form_view_ref':'account.invoice_form','partner_id': partner_id}"/> -->
+                    <field name="invoice_id"
+                           domain="[('type','=',context.get('invoice_type')),'|',('commercial_partner_id','=',partner_id),
                            ('partner_id','=',partner_id), (('state','not in',['draft','cancel']))]"
                             context="{'form_view_ref':'account.invoice_form','partner_id': partner_id}"/>
                 </group>
@@ -69,7 +73,8 @@
                         string="Add From Invoice" class="oe_highlight"
                         type="action"
                         states="draft,to_approve"
-                        style='width:200px;height:30px;'/>
+                        style='width:200px;height:30px;'
+                        context="{'invoice_type': 'out_invoice'}"/>
             </group>
         </field>
     </record>
@@ -84,7 +89,8 @@
                         string="Add From Invoice" class="oe_highlight"
                         type="action"
                         states="draft,to_approve"
-                        style='width:200px;height:30px;'/>
+                        style='width:200px;height:30px;'
+                        context="{'invoice_type': 'in_invoice'}"/>
             </group>
         </field>
     </record>
