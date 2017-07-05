@@ -22,5 +22,5 @@
              'wizards/rma_add_sale.xml',
              'views/rma_order_line_view.xml'],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
 }
