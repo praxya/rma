@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# © 2017 Praxya <drl.9319@gmail.com>
 # © 2017 Eficent Business and IT Consulting Services S.L.
 # © 2015 Eezee-It, MONK Software, Vauxoo
 # © 2013 Camptocamp
@@ -14,3 +15,4 @@ from . import invoice
 from . import product
 from . import procurement
 from . import res_company
+from . import rma_external_invoice_line

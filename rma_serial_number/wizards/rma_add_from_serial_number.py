@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# © 2017 Praxya <drl.9319@gmail.com>
 from openerp import models, api, fields, _
 
 
@@ -86,4 +87,5 @@ class RmaAddFromSerialNumber(models.TransientModel):
         if not invoice_id:
             # If no exist invoice must search the serial number in old invoices
             # from the old system
+            self._search_external_invoice()
             print "TODO"

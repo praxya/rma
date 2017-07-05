@@ -36,6 +36,7 @@
              'views/product_view.xml',
              'views/procurement_view.xml',
              'views/res_company_view.xml',
+             'views/rma_external_invoice_line.xml',
              'wizards/rma_make_picking.xml',
              'wizards/rma_add_invoice.xml',
              'wizards/rma_refund.xml',

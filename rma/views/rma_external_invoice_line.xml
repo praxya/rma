@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_rma_external_invoice_line_tree" model="ir.ui.view">
+      <field name="name">view.rma_external_invoice_line.tree</field>
+      <field name="model">rma.external.invoice.line</field>
+      <field name="arch" type="xml">
+        <tree string="Rma external invoice line" editable="top">
+          <field name="partner_id"/>
+          <field name="invoice_number"/>
+          <field name="invoice_date"/>
+          <field name="product_id"/>
+          <field name="serial_number"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_rma_external_invoice_line_search" model="ir.ui.view">
+      <field name="name">view.rma_external_invoice_line.search</field>
+      <field name="model">rma.external.invoice.line</field>
+      <field name="arch" type="xml">
+        <search string="rma.external.invoice.line">
+          <field name="partner_id" />
+          <group string="Group By" name="groupby">
+            <filter name="partner_id_groupby" string="Partner"
+              context="{'group_by': 'partner_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="rma_external_invoice_line_action" model="ir.actions.act_window">
+      <field name="name">External invoice lines</field>
+      <field name="res_model">rma.external.invoice.line</field>
+      <field name="view_mode">tree</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new rma.external.invoice.line.
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="menu_config_rma"
+        name="Config RMA"
+        groups="rma.group_rma_customer_user,rma.group_rma_supplier_user"
+        sequence="35"
+        parent="stock.menu_stock_root"/>
+
+    <menuitem id="rma_external_invoice_line_menu"
+      name="External Invoice Lines"
+      parent="menu_config_rma"
+      action="rma_external_invoice_line_action"
+      sequence="1"/>
+
+  </data>
+</openerp>
