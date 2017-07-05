@@ -31,7 +31,8 @@
                             string="Add From Serial Number" class="oe_highlight"
                             type="action"
                             states="draft,to_approve"
-                            style='width:200px;height:30px;'/>
+                            style='width:200px;height:30px;'
+                            context="{'default_rma_type': 'supplier'}"/>
                 </group>
             </field>
         </record>

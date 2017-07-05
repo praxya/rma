@@ -12,6 +12,7 @@
                       options="{'no_create': True}"/>
                     <field name="serial_number_id"
                       options="{'no_create': True}"/>
+                    <field name="rma_type" invisible="1"/>
                 </group>
                 <footer>
                     <button
