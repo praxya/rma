@@ -32,7 +32,7 @@
                             type="action"
                             states="draft,to_approve"
                             style='width:200px;height:30px;'
-                            context="{'default_rma_type': 'supplier'}"/>
+                            context="{'default_rma_type':'supplier', 'default_rma_id':active_id}"/>
                 </group>
             </field>
         </record>
