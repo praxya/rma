@@ -135,6 +135,8 @@ class RmaAddFromSerialNumber(models.TransientModel):
                 #     line.price_unit, invoice_id.currency_id, round=False),
                 'delivery_address_id': invoice_id.partner_id.id,
                 'invoice_address_id': invoice_id.partner_id.id,
+                'invoice_date': invoice_id.date_invoice,
+                'invoice_partner_id': invoice_id.partner_id.id,
             })
         elif external_invoice_id:
             data.update({
@@ -144,6 +146,8 @@ class RmaAddFromSerialNumber(models.TransientModel):
                 #     line.price_unit, invoice_id.currency_id, round=False),
                 'delivery_address_id': external_invoice_id.partner_id.id,
                 'invoice_address_id': external_invoice_id.partner_id.id,
+                'invoice_date': external_invoice_id.invoice_date,
+                'invoice_partner_id': external_invoice_id.partner_id.id,
             })
         if operation:
             data.update({
