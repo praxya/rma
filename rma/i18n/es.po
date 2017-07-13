@@ -1,0 +1,1306 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rma
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-10 11:33+0000\n"
+"PO-Revision-Date: 2017-07-13 12:32+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: rma
+#: field:rma.order.line,out_shipment_count:0
+msgid "# of Deliveries"
+msgstr "# De entregas"
+
+#. module: rma
+#: field:rma.order,invoice_count:0
+msgid "# of Incoming Shipments"
+msgstr "# of Envios entrantes"
+
+#. module: rma
+#: field:rma.order,in_shipment_count:0
+msgid "# of Invoices"
+msgstr "# De Facturas"
+
+#. module: rma
+#: field:rma.order,line_count:0 field:rma.order,out_shipment_count:0
+#: field:rma.order,supplier_line_count:0
+msgid "# of Outgoing Shipments"
+msgstr "# De los envios salientes"
+
+#. module: rma
+#: field:rma.order.line,procurement_count:0
+msgid "# of Procurements"
+msgstr "# de adquisiciones"
+
+#. module: rma
+#: field:account.invoice,rma_count:0 field:account.invoice.line,rma_count:0
+msgid "# of RMA"
+msgstr "# del RMA"
+
+#. module: rma
+#: field:rma.order,invoice_refund_count:0 field:rma.order.line,refund_count:0
+msgid "# of Refunds"
+msgstr "# de Rectificativas"
+
+#. module: rma
+#: field:rma.order.line,in_shipment_count:0
+msgid "# of Shipments"
+msgstr "# de envios"
+
+#. module: rma
+#: model:ir.actions.act_window,help:rma.rma_external_invoice_line_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"          Click to create a new rma.external.invoice.line.\n"
+"        </p>\n"
+"      "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"          Click to create a new rma.external.invoice.line.\n"
+"        </p>\n"
+"      "
+
+#. module: rma
+#: field:rma.refund,date:0
+msgid "Accounting Date"
+msgstr "Fecha de contabilizado"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_add_invoice_button_form
+#: view:rma.order:rma.view_rma_add_invoice_form
+msgid "Add From Invoice"
+msgstr "Añadir desde factura"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_add_invoice
+#: field:rma.order,add_invoice_id:0
+msgid "Add Invoice"
+msgstr "Añadir factura"
+
+#. module: rma
+#: field:rma.order,comment:0
+msgid "Additional Information"
+msgstr "información adicional"
+
+#. module: rma
+#: field:stock.config.settings,group_rma_delivery_address:0
+msgid "Addresses"
+msgstr "Direcciones"
+
+#. module: rma
+#: model:res.groups,name:rma.group_rma_delivery_invoice_address
+msgid "Addresses in RMA"
+msgstr "Direcciones en RMA"
+
+#. module: rma
+#: selection:rma.rule,approval_policy:0
+msgid "Always"
+msgstr "Siempre"
+
+#. module: rma
+#: field:rma.order,rule_id:0
+msgid "Approval Criteria"
+msgstr "Criterio de aprobación"
+
+#. module: rma
+#: field:rma.rule,approval_policy:0
+msgid "Approval Policy"
+msgstr "Politica de aprovación"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: rma
+#: selection:rma.order,state:0 selection:rma_make_picking.wizard.item,state:0
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: rma
+#: field:rma.order,assigned_to:0 field:rma.order.line,assigned_to:0
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+msgid "Back to Draft"
+msgstr "Vovler a borrador"
+
+#. module: rma
+#: selection:rma.operation,receipt_policy:0
+#: selection:rma.order.line,receipt_policy:0
+#: selection:rma_make_picking.wizard.item,receipt_policy:0
+msgid "Based on Delivered Quantities"
+msgstr "Basado en cantidad de enviados"
+
+#. module: rma
+#: selection:rma.operation,delivery_policy:0
+#: selection:rma.operation,receipt_policy:0
+#: selection:rma.operation,refund_policy:0
+#: selection:rma.order.line,delivery_policy:0
+#: selection:rma.order.line,receipt_policy:0
+#: selection:rma.order.line,refund_policy:0
+#: selection:rma.refund.item,refund_policy:0
+#: selection:rma_make_picking.wizard.item,delivery_policy:0
+#: selection:rma_make_picking.wizard.item,receipt_policy:0
+msgid "Based on Ordered Quantities"
+msgstr "Basado en cantidades pedidas"
+
+#. module: rma
+#: selection:rma.operation,delivery_policy:0
+#: selection:rma.operation,refund_policy:0
+#: selection:rma.order.line,delivery_policy:0
+#: selection:rma.order.line,refund_policy:0
+#: selection:rma.refund.item,refund_policy:0
+#: selection:rma_make_picking.wizard.item,delivery_policy:0
+msgid "Based on Received Quantities"
+msgstr "Basado en cantidades recibidas"
+
+#. module: rma
+#: view:rma.refund:rma.view_rma_refund
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+#: view:rma_make_picking.wizard:rma.view_rma_picking
+#: view:rma_make_picking.wizard:rma.view_rma_picking_out
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: rma
+#: field:rma.order.line,children_ids:0
+msgid "Children ids"
+msgstr "Children ids"
+
+#. module: rma
+#: field:rma.external.invoice.line,partner_id:0
+msgid "Client/customer"
+msgstr "Cliente/Proveedor"
+
+#. module: rma
+#: field:rma.operation,code:0 field:rma.rule,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: rma
+#: model:ir.model,name:rma.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: rma
+#: field:rma.order,company_id:0 field:rma.order.line,company_id:0
+msgid "Company"
+msgstr "Compañia"
+
+#. module: rma
+#: field:rma_make_picking.wizard.item,company_id:0
+msgid "Company id"
+msgstr "Compañia id"
+
+#. module: rma
+#: model:ir.ui.menu,name:rma.menu_config_rma
+msgid "Config RMA"
+msgstr "Configuración RMA"
+
+#. module: rma
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+#: view:rma_make_picking.wizard:rma.view_rma_picking
+#: view:rma_make_picking.wizard:rma.view_rma_picking_out
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_picking_out
+#: view:rma.order.line:rma.view_rma_line_button_form
+#: view:rma.order.line:rma.view_rma_line_supplier_button_form
+msgid "Create Delivery"
+msgstr "Crear entrega"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_picking_in
+#: view:rma.order.line:rma.view_rma_line_button_form
+#: view:rma.order.line:rma.view_rma_line_supplier_button_form
+msgid "Create Incoming Shipment"
+msgstr "Crear envío entrante"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_refund
+#: view:rma.order.line:rma.view_rma_line_button_refund_form
+#: view:rma.order.line:rma.view_rma_line_supplier_button_refund_form
+#: view:rma.refund:rma.view_rma_refund
+msgid "Create Refund"
+msgstr "Crear rectificativa"
+
+#. module: rma
+#: field:rma.external.invoice.line,create_uid:0
+#: field:rma.operation,create_uid:0 field:rma.order,create_uid:0
+#: field:rma.order.line,create_uid:0 field:rma.refund,create_uid:0
+#: field:rma.refund.item,create_uid:0 field:rma.rule,create_uid:0
+#: field:rma_add_invoice,create_uid:0
+#: field:rma_make_picking.wizard,create_uid:0
+#: field:rma_make_picking.wizard.item,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: rma
+#: field:rma.external.invoice.line,create_date:0
+#: field:rma.operation,create_date:0 field:rma.order,create_date:0
+#: field:rma.order.line,create_date:0 field:rma.refund,create_date:0
+#: field:rma.refund.item,create_date:0 field:rma.rule,create_date:0
+#: field:rma_add_invoice,create_date:0
+#: field:rma_make_picking.wizard,create_date:0
+#: field:rma_make_picking.wizard.item,create_date:0
+msgid "Created on"
+msgstr "Creado"
+
+#. module: rma
+#: view:rma.refund:rma.view_rma_refund
+msgid "Credit Note"
+msgstr "Nota de credito"
+
+#. module: rma
+#: field:rma.order.line,currency_id:0
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: rma
+#: selection:rma.operation,type:0 view:rma.order:rma.view_rma_form
+#: view:rma.order:rma.view_rma_tree selection:rma.order,type:0
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+#: selection:rma_make_picking.wizard.item,type:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_customer
+#: model:ir.ui.menu,name:rma.menu_customer_rma
+#: model:ir.ui.menu,name:rma.menu_rma_act_customer
+msgid "Customer RMA"
+msgstr "Cliente RMA"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_customer_lines
+#: model:ir.ui.menu,name:rma.menu_rma_line_customer
+msgid "Customer RMA Lines"
+msgstr "Cliente RMA Lineas"
+
+#. module: rma
+#: help:rma.order,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Fecha del ultimo mensaje recibido"
+
+#. module: rma
+#: field:res.company,rma_rule_id:0
+msgid "Default RMA Approval Policy"
+msgstr "Politica de aprobación del RMA por defecto"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Deliveries"
+msgstr "Entregas"
+
+#. module: rma
+#: field:rma.operation,delivery_policy:0 field:rma.order.line,delivery_policy:0
+#: field:rma_make_picking.wizard.item,delivery_policy:0
+msgid "Delivery Policy"
+msgstr "Politica de entregas"
+
+#. module: rma
+#: view:rma.operation:rma.rma_operation_form field:rma.operation,name:0
+#: field:rma.order.line,name:0 field:rma.refund.item,name:0
+#: view:rma.rule:rma.rma_rule_form field:rma.rule,name:0
+#: field:rma_make_picking.wizard.item,name:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: rma
+#: selection:stock.config.settings,group_rma_delivery_address:0
+msgid "Display 3 fields on rma: partner, invoice address, delivery address"
+msgstr "Display 3 fields on rma: partner, invoice address, delivery address"
+
+#. module: rma
+#: field:rma.external.invoice.line,display_name:0
+#: field:rma.operation,display_name:0 field:rma.order,display_name:0
+#: field:rma.order.line,display_name:0 field:rma.refund,display_name:0
+#: field:rma.refund.item,display_name:0 field:rma.rule,display_name:0
+#: field:rma_add_invoice,display_name:0
+#: field:rma_make_picking.wizard,display_name:0
+#: field:rma_make_picking.wizard.item,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: selection:rma.order,state:0 selection:rma_make_picking.wizard.item,state:0
+msgid "Done"
+msgstr "Realizado"
+
+#. module: rma
+#: selection:rma.order,state:0 selection:rma_make_picking.wizard.item,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_order
+msgid "Email Thread"
+msgstr "Hilo de mensajes"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+msgid "Exceptions"
+msgstr "Exepciones"
+
+#. module: rma
+#: model:ir.ui.menu,name:rma.rma_external_invoice_line_menu
+msgid "External Invoice Lines"
+msgstr "Líneas de factura externas"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.rma_external_invoice_line_action
+msgid "External invoice lines"
+msgstr "Líneas de factura externas"
+
+#. module: rma
+#: field:rma.order,message_follower_ids:0
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: rma
+#: help:rma.order.line,sequence:0
+msgid "Gives the sequence of this line when displaying the rma."
+msgstr "Gives the sequence of this line when displaying the rma."
+
+#. module: rma
+#: view:rma.external.invoice.line:rma.view_rma_external_invoice_line_search
+#: view:rma.order:rma.view_rma_rma_filter
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: rma
+#: help:rma.order,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: rma
+#: field:rma.external.invoice.line,id:0 field:rma.operation,id:0
+#: field:rma.order,id:0 field:rma.order.line,id:0 field:rma.refund,id:0
+#: field:rma.refund.item,id:0 field:rma.rule,id:0 field:rma_add_invoice,id:0
+#: field:rma_make_picking.wizard,id:0 field:rma_make_picking.wizard.item,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: rma
+#: help:rma.order,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Si este campo esta marcado, hay nuevos mensajes que requiren su atención"
+
+#. module: rma
+#: help:rma.external.invoice.line,invoice_number:0
+msgid "In this field you must insert the invoice number from you oldsystem"
+msgstr "En este campo debe insertar el numero de factura de su anterior sistema"
+
+#. module: rma
+#: view:rma.operation:rma.rma_operation_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Inbound"
+msgstr "Inbound"
+
+#. module: rma
+#: field:rma.operation,in_route_id:0 field:rma.order.line,in_route_id:0
+#: field:rma_make_picking.wizard.item,in_route_id:0
+msgid "Inbound Route"
+msgstr "Inbound Route"
+
+#. module: rma
+#: field:rma.operation,in_warehouse_id:0 field:rma.order.line,in_warehouse_id:0
+#: field:rma_make_picking.wizard.item,in_warehouse_id:0
+msgid "Inbound Warehouse"
+msgstr "Inbound Warehouse"
+
+#. module: rma
+#: field:rma.order.line,qty_incoming:0
+msgid "Incoming Qty"
+msgstr "Incoming Qty"
+
+#. module: rma
+#: model:ir.model,name:rma.model_stock_location
+msgid "Inventory Locations"
+msgstr "Ubicaciones de inventario"
+
+#. module: rma
+#: model:ir.model,name:rma.model_stock_location_route
+msgid "Inventory Routes"
+msgstr "Rutas de inventario"
+
+#. module: rma
+#: model:ir.model,name:rma.model_account_invoice
+#: field:rma_add_invoice,invoice_id:0
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: rma
+#: field:rma.refund.item,invoice_address_id:0
+msgid "Invoice Address"
+msgstr "Dirección de factura"
+
+#. module: rma
+#: field:rma.external.invoice.line,invoice_date:0
+msgid "Invoice Date"
+msgstr "Fecha de factura"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_invoice_line
+#: model:ir.model,name:rma.model_account_invoice_line
+#: field:rma.order.line,invoice_line_id:0
+#: field:rma_make_picking.wizard.item,invoice_line_id:0
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: rma
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+#: field:rma_add_invoice,invoice_line_ids:0
+msgid "Invoice Lines"
+msgstr "Lineas de factura"
+
+#. module: rma
+#: field:rma.external.invoice.line,invoice_number:0
+msgid "Invoice Number"
+msgstr "Número de factura"
+
+#. module: rma
+#: help:rma.order.line,invoice_address_id:0
+msgid "Invoice address for current rma order."
+msgstr "Dirección de factura para el actual rma"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_refund.py:90
+#, python-format
+msgid "Invoice refund"
+msgstr "Factura rectificativa"
+
+#. module: rma
+#: selection:stock.config.settings,group_rma_delivery_address:0
+msgid "Invoicing and shipping addresses are always the same (Example: services companies)"
+msgstr "Las direcciones de envío y facturación siempre son las mismas"
+
+#. module: rma
+#: field:rma.order,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Es seguidor"
+
+#. module: rma
+#: field:rma.refund,item_ids:0 field:rma_make_picking.wizard,item_ids:0
+msgid "Items"
+msgstr "Items"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_make_picking_wizard_item
+msgid "Items to receive"
+msgstr "Items a recibir"
+
+#. module: rma
+#: field:rma.order,message_last_post:0
+msgid "Last Message Date"
+msgstr "Fecha del ultimo mensaje"
+
+#. module: rma
+#: field:rma.external.invoice.line,__last_update:0
+#: field:rma.operation,__last_update:0 field:rma.order,__last_update:0
+#: field:rma.order.line,__last_update:0 field:rma.refund,__last_update:0
+#: field:rma.refund.item,__last_update:0 field:rma.rule,__last_update:0
+#: field:rma_add_invoice,__last_update:0
+#: field:rma_make_picking.wizard,__last_update:0
+#: field:rma_make_picking.wizard.item,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modificación:"
+
+#. module: rma
+#: field:rma.external.invoice.line,write_uid:0 field:rma.operation,write_uid:0
+#: field:rma.order,write_uid:0 field:rma.order.line,write_uid:0
+#: field:rma.refund,write_uid:0 field:rma.refund.item,write_uid:0
+#: field:rma.rule,write_uid:0 field:rma_add_invoice,write_uid:0
+#: field:rma_make_picking.wizard,write_uid:0
+#: field:rma_make_picking.wizard.item,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima actualización por:"
+
+#. module: rma
+#: field:rma.external.invoice.line,write_date:0
+#: field:rma.operation,write_date:0 field:rma.order,write_date:0
+#: field:rma.order.line,write_date:0 field:rma.refund,write_date:0
+#: field:rma.refund.item,write_date:0 field:rma.rule,write_date:0
+#: field:rma_add_invoice,write_date:0
+#: field:rma_make_picking.wizard,write_date:0
+#: field:rma_make_picking.wizard.item,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima actualización el:"
+
+#. module: rma
+#: field:rma.order,message_ids:0
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: rma
+#: help:rma.order,message_ids:0
+msgid "Messages and communication history"
+msgstr "Historial de mensajes y comunicación"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_rma_filter
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "My RMAs"
+msgstr "Mis RMA"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_make_picking.py:174
+#, python-format
+msgid "No deliveries needed for this operation"
+msgstr "No hay entregas necesarias para esta operación"
+
+#. module: rma
+#: selection:rma.operation,refund_policy:0
+#: selection:rma.order.line,refund_policy:0
+msgid "No refund"
+msgstr "No reembolsable"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_make_picking.py:170
+#, python-format
+msgid "No shipments needed for this operation"
+msgstr "No se necesitan envíos para esta operación"
+
+#. module: rma
+#: selection:rma.operation,delivery_policy:0
+#: selection:rma.operation,receipt_policy:0
+#: selection:rma.order.line,delivery_policy:0
+#: selection:rma.order.line,receipt_policy:0
+#: selection:rma.refund.item,refund_policy:0
+#: selection:rma_make_picking.wizard.item,delivery_policy:0
+#: selection:rma_make_picking.wizard.item,receipt_policy:0
+msgid "Not required"
+msgstr "No requerido"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_make_picking.py:69
+#: code:addons/rma/wizards/rma_refund.py:58
+#, python-format
+msgid "Only RMA lines from the same partner can be processed at the same time"
+msgstr "Solo las lineas de RMA del mismo proveedor pueden ser procesadas al mismo tiempo"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+#: field:rma.order.line,operation_id:0
+msgid "Operation"
+msgstr "Operación"
+
+#. module: rma
+#: field:rma_make_picking.wizard.item,operation_id:0
+msgid "Operation id"
+msgstr "Operation id"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_operation
+#: model:ir.ui.menu,name:rma.menu_rma_operation
+msgid "Operations"
+msgstr "Operaciones"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Order"
+msgstr "Orden"
+
+#. module: rma
+#: field:rma.order,date_rma:0
+msgid "Order Date"
+msgstr "Fecha de la orden"
+
+#. module: rma
+#: field:rma.order,name:0
+msgid "Order Number"
+msgstr "Número de la orden"
+
+#. module: rma
+#: field:rma.order.line,product_qty:0
+msgid "Ordered Qty"
+msgstr "Ordenar por cantidad"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Origin Inv"
+msgstr "Factura de origen"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+msgid "Other Info"
+msgstr "Otra info"
+
+#. module: rma
+#: view:rma.operation:rma.rma_operation_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Outbound"
+msgstr "Saliente"
+
+#. module: rma
+#: field:rma.operation,out_route_id:0 field:rma.order.line,out_route_id:0
+#: field:rma_make_picking.wizard.item,out_route_id:0
+msgid "Outbound Route"
+msgstr "Ruta de salida"
+
+#. module: rma
+#: field:rma.operation,out_warehouse_id:0
+#: field:rma.order.line,out_warehouse_id:0
+#: field:rma_make_picking.wizard.item,out_warehouse_id:0
+msgid "Outbound Warehouse"
+msgstr "Almacen de salida"
+
+#. module: rma
+#: field:rma.order.line,qty_outgoing:0
+msgid "Outgoing Qty"
+msgstr "Cantidad de Salida"
+
+#. module: rma
+#: field:rma.order.line,parent_id:0
+msgid "Parent RMA line"
+msgstr "RMA linea padre"
+
+#. module: rma
+#: view:rma.external.invoice.line:rma.view_rma_external_invoice_line_search
+#: view:rma.order:rma.view_rma_rma_filter field:rma.order,partner_id:0
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+#: field:rma.order.line,partner_id:0 field:rma_add_invoice,partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: rma
+#: field:rma.order.line,partner_address_id:0
+#: field:rma_make_picking.wizard.item,partner_address_id:0
+msgid "Partner Address"
+msgstr "Dirección de empresa"
+
+#. module: rma
+#: field:rma.order.line,delivery_address_id:0
+#: field:rma_make_picking.wizard.item,delivery_address:0
+msgid "Partner delivery address"
+msgstr "Dirección de entrega"
+
+#. module: rma
+#: field:rma.order.line,invoice_address_id:0
+msgid "Partner invoice address"
+msgstr "Dirección de factura"
+
+#. module: rma
+#: model:ir.model,name:rma.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: rma
+#: view:rma.operation:rma.rma_operation_form view:rma.rule:rma.rma_rule_form
+msgid "Policies"
+msgstr "Policies"
+
+#. module: rma
+#: field:rma.order.line,price_unit:0
+msgid "Price Unit"
+msgstr "Precio unidad"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Proc. Exceptions"
+msgstr "Proc. Exceptions"
+
+#. module: rma
+#: model:ir.model,name:rma.model_procurement_order
+msgid "Procurement"
+msgstr "Abastecimiento"
+
+#. module: rma
+#: model:ir.model,name:rma.model_procurement_group
+msgid "Procurement Requisition"
+msgstr "Petición de abastecimiento"
+
+#. module: rma
+#: field:rma.order.line,procurement_ids:0
+msgid "Procurements"
+msgstr "Abastecimientos"
+
+#. module: rma
+#: field:rma.external.invoice.line,product_id:0
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+#: field:rma.order.line,product_id:0 field:rma.refund.item,product_id:0
+#: field:rma_make_picking.wizard.item,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: rma
+#: model:ir.model,name:rma.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: rma
+#: model:ir.model,name:rma.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: rma
+#: field:rma.order.line,qty_delivered:0
+msgid "Qty Delivered"
+msgstr "Cantidad entregada"
+
+#. module: rma
+#: field:rma.order.line,qty_received:0
+msgid "Qty Received"
+msgstr "Cantidad recibida"
+
+#. module: rma
+#: field:rma.order.line,qty_refunded:0
+msgid "Qty Refunded"
+msgstr "Cantidad devuelta"
+
+#. module: rma
+#: field:rma.order.line,qty_to_deliver:0
+msgid "Qty To Deliver"
+msgstr "Cantidad para entregar"
+
+#. module: rma
+#: field:rma.order.line,qty_to_receive:0
+msgid "Qty To Receive"
+msgstr "Cantidad para recibir"
+
+#. module: rma
+#: field:rma.order.line,qty_to_refund:0
+msgid "Qty To Refund"
+msgstr "Cantidad para Reembolsar"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Quantities"
+msgstr "Cantidades"
+
+#. module: rma
+#: field:rma.refund.item,product_qty:0
+#: field:rma_make_picking.wizard.item,product_qty:0
+msgid "Quantity Ordered"
+msgstr "Cantidad ordenada"
+
+#. module: rma
+#: field:rma_make_picking.wizard.item,qty_to_deliver:0
+msgid "Quantity To Deliver"
+msgstr "Cantidad para entregar"
+
+#. module: rma
+#: field:rma.refund.item,qty_to_refund:0
+msgid "Quantity To Refund"
+msgstr "Cantidad para Reembolsar"
+
+#. module: rma
+#: field:rma_make_picking.wizard.item,qty_to_receive:0
+msgid "Quantity to Receive"
+msgstr "Cantidad para recibir"
+
+#. module: rma
+#: view:account.invoice:rma.invoice_form
+#: view:account.invoice:rma.invoice_supplier_form
+#: field:account.invoice.line,rma_line_ids:0
+#: model:ir.module.category,name:rma.module_category_rma
+#: model:ir.ui.menu,name:rma.menu_rma_config field:procurement.group,rma_id:0
+#: field:procurement.order,rma_line_id:0 view:res.company:rma.view_company_form
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order:rma.view_rma_supplier_tree view:rma.order:rma.view_rma_tree
+#: field:rma.order.line,rma_id:0 field:rma.refund.item,rma_id:0
+#: field:rma_make_picking.wizard.item,rma_id:0 field:stock.move,rma_line_id:0
+msgid "RMA"
+msgstr "RMA"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_make_picking.py:165
+#: code:addons/rma/wizards/rma_refund.py:105
+#, python-format
+msgid "RMA %s is not approved"
+msgstr "RMA %s no esta aprobado"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_rule
+msgid "RMA Approval Conditions"
+msgstr "RMA Approval Conditions"
+
+#. module: rma
+#: model:res.groups,name:rma.group_rma_customer_user
+msgid "RMA Customer User"
+msgstr "RMA Cliente"
+
+#. module: rma
+#: field:stock.warehouse,rma_cust_in_type_id:0
+msgid "RMA Customer in Type"
+msgstr "RMA Tipo de cliente"
+
+#. module: rma
+#: field:stock.warehouse,rma_cust_out_type_id:0
+msgid "RMA Customer out Type"
+msgstr "RMA Tipo de cliente salida"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_rma_filter
+msgid "RMA Date"
+msgstr "RMA Fecha"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+#: view:rma.order.line:rma.view_rma_line_supplier_tree
+#: view:rma.order.line:rma.view_rma_line_tree
+msgid "RMA Line"
+msgstr "RMA Línea "
+
+#. module: rma
+#: view:account.invoice.line:rma.view_invoice_line_form
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.refund:rma.view_rma_refund
+#: view:rma_make_picking.wizard:rma.view_rma_picking
+#: view:rma_make_picking.wizard:rma.view_rma_picking_out
+msgid "RMA Lines"
+msgstr "RMA Lineas"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_refund_item
+msgid "RMA Lines to refund"
+msgstr "RMA Lineas a reembolsar"
+
+#. module: rma
+#: field:stock.warehouse,lot_rma_id:0
+msgid "RMA Location"
+msgstr "RMA localización"
+
+#. module: rma
+#: model:res.groups,name:rma.group_rma_manager
+msgid "RMA Manager"
+msgstr "RMA Manager"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_operation
+#: field:product.category,rma_operation_id:0
+#: field:product.template,rma_operation_id:0
+msgid "RMA Operation"
+msgstr "RMA Operaciones"
+
+#. module: rma
+#: view:rma.operation:rma.rma_operation_form
+#: view:rma.operation:rma.rma_operation_tree
+msgid "RMA Operations"
+msgstr "RMA Operaciones"
+
+#. module: rma
+#: field:rma_add_invoice,rma_id:0
+msgid "RMA Order"
+msgstr "RMA Orden"
+
+#. module: rma
+#: view:stock.location.route:rma.stock_location_route_form_view_inherit_rma_stock
+msgid "RMA Order Lines"
+msgstr "RMA Order lineas"
+
+#. module: rma
+#: view:rma.rule:rma.rma_rule_form
+msgid "RMA Rules"
+msgstr "RMA Reglas"
+
+#. module: rma
+#: model:res.groups,name:rma.group_rma_supplier_user
+msgid "RMA Supplier User"
+msgstr "RMA usuario proveedor"
+
+#. module: rma
+#: field:stock.warehouse,rma_sup_in_type_id:0
+msgid "RMA Supplier in Type"
+msgstr "RMA Tipo proveedor"
+
+#. module: rma
+#: field:stock.warehouse,rma_sup_out_type_id:0
+msgid "RMA Supplier out Type"
+msgstr "RMA tipo salida proveedor"
+
+#. module: rma
+#: field:account.invoice.line,rma_line_id:0
+msgid "RMA line refund"
+msgstr "RMA lineas reembolsables"
+
+#. module: rma
+#: field:rma.operation,rma_line_ids:0 field:rma.order,rma_line_ids:0
+msgid "RMA lines"
+msgstr "RMA lineas"
+
+#. module: rma
+#: field:rma.refund.item,line_id:0 field:rma_make_picking.wizard.item,line_id:0
+msgid "RMA order Line"
+msgstr "RMA linea de orden"
+
+#. module: rma
+#: view:account.invoice.line:rma.view_invoice_line_form
+msgid "RMA originated"
+msgstr "RMA originated"
+
+#. module: rma
+#: view:rma.rule:rma.rma_rule_tree
+msgid "RMA rules"
+msgstr "RMA reglas"
+
+#. module: rma
+#: field:rma.refund,description:0
+msgid "Reason"
+msgstr "Razón"
+
+#. module: rma
+#: field:rma.operation,receipt_policy:0 field:rma.order.line,receipt_policy:0
+#: field:rma_make_picking.wizard.item,receipt_policy:0
+msgid "Receipts Policy"
+msgstr "Política de recibos"
+
+#. module: rma
+#: field:rma.order,reference:0
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: rma
+#: help:rma.order.line,origin:0
+msgid "Reference of the document that produced this rma."
+msgstr "Referencia del documento que ha producido el rma"
+
+#. module: rma
+#: field:rma.refund,date_invoice:0
+msgid "Refund Date"
+msgstr "Fecha de reembolso"
+
+#. module: rma
+#: field:rma.order.line,refund_line_ids:0
+msgid "Refund Lines"
+msgstr "Lineas rectificativas"
+
+#. module: rma
+#: field:rma.operation,refund_policy:0 field:rma.order.line,refund_policy:0
+#: field:rma.refund.item,refund_policy:0
+msgid "Refund Policy"
+msgstr "Plitica de reembolso"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Refunds"
+msgstr "Rectificativas"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form
+msgid "Rel. RMA Lines"
+msgstr "Rel. RMA lineas"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+msgid "Request Approval"
+msgstr "Pedir aprobación"
+
+#. module: rma
+#: field:rma.order,requested_by:0 field:rma.order.line,requested_by:0
+msgid "Requested by"
+msgstr "Requested by"
+
+#. module: rma
+#: view:stock.config.settings:rma.view_stock_config_settings_rma
+msgid "Return Merchandise Authorization"
+msgstr "Autorización de devolución de mercancías"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+msgid "Rma Line"
+msgstr "Rma Línea"
+
+#. module: rma
+#: view:rma.external.invoice.line:rma.view_rma_external_invoice_line_tree
+msgid "Rma external invoice line"
+msgstr "Rma línea de factura externa"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Routes"
+msgstr "Rutas"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_rule
+#: model:ir.ui.menu,name:rma.menu_rma_rule
+msgid "Rules"
+msgstr "Reglas"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_rma_filter
+msgid "Search RMA"
+msgstr "Buscar RMA"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "Search RMA line"
+msgstr "Buscar línea de RMA"
+
+#. module: rma
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+msgid "Select Invoice from customer"
+msgstr "Seleccione factura desde proveedor"
+
+#. module: rma
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+msgid "Select Invoices lines to add"
+msgstr "Seleccione las lineas a añadir"
+
+#. module: rma
+#: view:rma_make_picking.wizard:rma.view_rma_picking
+#: view:rma_make_picking.wizard:rma.view_rma_picking_out
+msgid "Select lines for picking"
+msgstr "Seleccione lines desde el albarán"
+
+#. module: rma
+#: field:stock.location.route,rma_selectable:0
+msgid "Selectable on RMA Lines"
+msgstr "Selecionable en lineas RMA"
+
+#. module: rma
+#: field:rma.operation,location_id:0 field:rma.order.line,location_id:0
+#: field:rma_make_picking.wizard.item,location_id:0
+msgid "Send To This Company Location"
+msgstr "Enviar a la localización de esta compañia"
+
+#. module: rma
+#: field:rma.order.line,sequence:0
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: rma
+#: field:rma.external.invoice.line,serial_number:0
+msgid "Serial number"
+msgstr "Número de serie"
+
+#. module: rma
+#: view:rma.order:rma.view_rma_form view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+msgid "Shipments"
+msgstr "Envíos"
+
+#. module: rma
+#: field:rma.order.line,invoice_id:0
+msgid "Source"
+msgstr "Origen"
+
+#. module: rma
+#: field:rma.order.line,origin:0
+msgid "Source Document"
+msgstr "Documento origen"
+
+#. module: rma
+#: field:rma.order,state:0 field:rma.order.line,state:0
+#: field:rma_make_picking.wizard.item,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: rma
+#: model:ir.model,name:rma.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_line_form
+#: view:rma.order.line:rma.view_rma_line_supplier_form
+#: field:rma.order.line,move_ids:0
+msgid "Stock Moves"
+msgstr "Movimiento de existencias"
+
+#. module: rma
+#: field:rma.order,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: rma
+#: selection:rma.operation,type:0 view:rma.order:rma.view_rma_supplier_form
+#: view:rma.order:rma.view_rma_supplier_tree selection:rma.order,type:0
+#: selection:rma_make_picking.wizard.item,type:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_supplier
+#: model:ir.ui.menu,name:rma.menu_rma_act_supplier
+#: model:ir.ui.menu,name:rma.menu_supplier_rma
+msgid "Supplier RMA"
+msgstr "RMA Proveedor"
+
+#. module: rma
+#: model:ir.actions.act_window,name:rma.action_rma_supplier_lines
+#: model:ir.ui.menu,name:rma.menu_rma_line_supplier
+msgid "Supplier RMA Lines"
+msgstr "Líneas RMA proveedor"
+
+#. module: rma
+#: field:rma.operation,customer_to_supplier:0
+#: field:rma.order.line,customer_to_supplier:0
+#: field:rma_make_picking.wizard.item,customer_to_supplier:0
+msgid "The customer will send to the supplier"
+msgstr "El cliente enviará al proveedor"
+
+#. module: rma
+#: code:addons/rma/wizards/rma_refund.py:102
+#, python-format
+msgid "The operation is not refund for at least one line"
+msgstr "La operación no sera reembolsable hasta no que todas las lineas esten realizadas"
+
+#. module: rma
+#: help:rma.order,reference:0
+msgid "The partner reference of this RMA order."
+msgstr "Referencia del partner de este RMA"
+
+#. module: rma
+#: field:rma.operation,supplier_to_customer:0
+#: field:rma.order.line,supplier_to_customer:0
+#: field:rma_make_picking.wizard.item,supplier_to_customer:0
+msgid "The supplier will send to the customer"
+msgstr "El proveedor lo enviara al cliente"
+
+#. module: rma
+#: code:addons/rma/models/rma_order_line.py:480
+#, python-format
+msgid "There's an rma for the invoice line %s and invoice %s"
+msgstr "Ya existe una linea de RMA %s para esta factura %s"
+
+#. module: rma
+#: help:rma.order.line,partner_address_id:0
+#: help:rma_make_picking.wizard.item,partner_address_id:0
+msgid "This address of the supplier in case of Customer RMA operation dropship. The address of the customer in case of Supplier RMA operation dropship"
+msgstr "Esta dirección del proveedor en caso de cliente RMA dropship operación. La dirección del cliente en caso de operación de RMA del Proveedor dropship"
+
+#. module: rma
+#: help:rma.order.line,delivery_address_id:0
+msgid "This address will be used to deliver repaired or replacement products."
+msgstr "La dirección puede ser usada para reparar o reemplazar productos"
+
+#. module: rma
+#: help:account.invoice.line,rma_line_ids:0
+msgid "This will contain the RMA lines for the invoice line"
+msgstr "Contiene las lineas de RMA desde la factura"
+
+#. module: rma
+#: help:account.invoice.line,rma_line_id:0
+msgid "This will contain the rma line that originated the refund line"
+msgstr "Contendra la linea de rma Que originó la línea de reembolso"
+
+#. module: rma
+#: selection:rma.order,state:0 selection:rma_make_picking.wizard.item,state:0
+msgid "To Approve"
+msgstr "Para aprobar"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "To Deliver"
+msgstr "Para entregar"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "To Receive"
+msgstr "Para recibir"
+
+#. module: rma
+#: view:rma.order.line:rma.view_rma_rma_line_filter
+msgid "To Refund"
+msgstr "Para reembolsar"
+
+#. module: rma
+#: field:rma.order,type:0 field:rma.order.line,type:0
+#: field:rma_make_picking.wizard.item,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: rma
+#: field:rma.order.line,uom_id:0 field:rma.refund.item,uom_id:0
+#: field:rma_make_picking.wizard.item,uom_id:0
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: rma
+#: field:rma.order,message_unread:0
+msgid "Unread Messages"
+msgstr "Mensajes no leidos"
+
+#. module: rma
+#: field:rma.operation,type:0
+msgid "Used in RMA of this type"
+msgstr "Used in RMA of this type"
+
+#. module: rma
+#: model:ir.model,name:rma.model_stock_warehouse
+#: field:stock.location,warehouse_id:0
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: rma
+#: field:rma.order,website_message_ids:0
+msgid "Website Messages"
+msgstr "Website Messages"
+
+#. module: rma
+#: help:rma.order,website_message_ids:0
+msgid "Website communication history"
+msgstr "Website communication history"
+
+#. module: rma
+#: field:rma.refund.item,wiz_id:0 field:rma_make_picking.wizard.item,wiz_id:0
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_add_invoice
+msgid "Wizard to add rma lines"
+msgstr "Wizard para añadir lineas de RMA"
+
+#. module: rma
+#: model:ir.model,name:rma.model_rma_make_picking_wizard
+msgid "Wizard to create pickings from rma lines"
+msgstr "Wizard para albarán desde lineas del RMA"
+
+#. module: rma
+#: view:procurement.order:rma.procurement_form_view_usage
+msgid "[('usage', '!=', 'view')]"
+msgstr "[('usage', '!=', 'view')]"
+
+#. module: rma
+#: view:rma_add_invoice:rma.view_rma_add_invoice
+#: view:rma_make_picking.wizard:rma.view_rma_picking
+#: view:rma_make_picking.wizard:rma.view_rma_picking_out
+msgid "or"
+msgstr "or"
+
+#. module: rma
+#: view:rma.external.invoice.line:rma.view_rma_external_invoice_line_search
+msgid "rma.external.invoice.line"
+msgstr "rma.external.invoice.line"

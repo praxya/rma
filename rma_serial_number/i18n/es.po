@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rma_serial_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-13 10:41+0000\n"
+"PO-Revision-Date: 2017-07-13 12:44+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: rma_serial_number
+#: model:ir.actions.act_window,name:rma_serial_number.action_rma_add_from_serial_number
+#: view:rma.order:rma_serial_number.view_rma_serial_number_form
+msgid "Add From Serial Number"
+msgstr "Añadir desde Num serie"
+
+#. module: rma_serial_number
+#: view:rma.add.from.serial.number:rma_serial_number.view_rma_add_from_serial_number_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: rma_serial_number
+#: view:rma.add.from.serial.number:rma_serial_number.view_rma_add_from_serial_number_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: rma_serial_number
+#: selection:rma.add.from.serial.number,rma_type:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: rma_serial_number
+#: field:rma.order.line,invoice_date:0
+msgid "Invoice Date"
+msgstr "Fecha de factura"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: rma_serial_number
+#: field:rma.order.line,invoice_partner_id:0
+msgid "Old invoice partner"
+msgstr "Factura antigua"
+
+#. module: rma_serial_number
+#: code:addons/rma_serial_number/wizards/rma_add_from_serial_number.py:160
+#, python-format
+msgid "Please define an operation first"
+msgstr "Por favor defina una operación primero"
+
+#. module: rma_serial_number
+#: code:addons/rma_serial_number/wizards/rma_add_from_serial_number.py:165
+#, python-format
+msgid "Please define an rma route"
+msgstr "Por favor, defina una ruta rma"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,rma_id:0
+msgid "RMA Order"
+msgstr "Orden RMA"
+
+#. module: rma_serial_number
+#: field:rma.add.from.serial.number,rma_type:0
+msgid "Rma Type"
+msgstr "Tipo RMA"
+
+#. module: rma_serial_number
+#: view:rma.add.from.serial.number:rma_serial_number.view_rma_add_from_serial_number_form
+#: field:rma.add.from.serial.number,serial_number_id:0
+msgid "Serial Number"
+msgstr "Num serie"
+
+#. module: rma_serial_number
+#: selection:rma.add.from.serial.number,rma_type:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: rma_serial_number
+#: code:addons/rma_serial_number/wizards/rma_add_from_serial_number.py:216
+#, python-format
+msgid "This serial number haven't Odoo invoice related and haven't invoice from the old system"
+msgstr "Este num de serie no esta en una factura registrada en Odoo ni en una factura del antiguo sistema"
+
+#. module: rma_serial_number
+#: view:rma.add.from.serial.number:rma_serial_number.view_rma_add_from_serial_number_form
+msgid "or"
+msgstr "or"

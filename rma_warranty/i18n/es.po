@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* rma_warranty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-13 10:45+0000\n"
+"PO-Revision-Date: 2017-07-13 12:47+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: rma_warranty
+#: model:ir.actions.act_window,name:rma_warranty.action_rma_customer_lines
+msgid "Customer RMA Lines"
+msgstr "Lineas RMA cliente"
+
+#. module: rma_warranty
+#: model:ir.model,name:rma_warranty.model_rma_order
+msgid "Email Thread"
+msgstr "Hilo de mensajes"
+
+#. module: rma_warranty
+#: code:addons/rma_warranty/models/rma_order_line.py:45
+#: selection:rma.order.line,warranty_state:0
+#, python-format
+msgid "Expired"
+msgstr "Caducada"
+
+#. module: rma_warranty
+#: selection:rma.order.line,warranty_state:0
+msgid "Sin definir"
+msgstr "Sin definir"
+
+#. module: rma_warranty
+#: model:ir.actions.act_window,name:rma_warranty.action_rma_supplier_lines
+msgid "Supplier RMA Lines"
+msgstr "RMA lineas proveedor"
+
+#. module: rma_warranty
+#: code:addons/rma_warranty/models/rma_order_line.py:46
+#, python-format
+msgid "Undefined"
+msgstr "Indefinida"
+
+#. module: rma_warranty
+#: code:addons/rma_warranty/models/rma_order_line.py:44
+#: selection:rma.order.line,warranty_state:0
+#, python-format
+msgid "Valid"
+msgstr "Valida"
+
+#. module: rma_warranty
+#: view:rma.order.line:rma_warranty.view_rma_line_form
+#: view:rma.order.line:rma_warranty.view_rma_line_supplier_form
+#: field:rma.order.line,warranty_state:0
+msgid "Warranty"
+msgstr "Garantia"
+
+#. module: rma_warranty
+#: field:rma.order.line,limit:0
+msgid "Warranty Expiry Date"
+msgstr "Fecha de expiración"
+
+#. module: rma_warranty
+#: model:ir.model,name:rma_warranty.model_rma_make_picking_wizard
+msgid "Wizard to create pickings from rma lines"
+msgstr "Wizard para crear alabranes desde las lineas RMA"
